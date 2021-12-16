@@ -7,7 +7,7 @@ def exct_experimental_section(doc):
     start   = 0
     end     = 0
     read    = 0
-    pattern_start = re.compile("【.*実施例.*】|（.*実施例.*）")
+    pattern_start = re.compile("【実施例.*】|（実施例.*）")
     pattern_end  = re.compile("【発明.*】|（発明.*）|【図面の簡単な.*】")
 
     exp_texts = []
