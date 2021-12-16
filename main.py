@@ -1,5 +1,6 @@
 from mymodule.Patent import Patent
 from mymodule.findWords import *
+from mymodule.discardP import *
 
 import os
 import spacy as spacy
@@ -17,8 +18,6 @@ for patent in dict_eff_words.keys():
     new = Patent(file_path)
     patents_list.append(new)
  
-print(patents_list[2].name)
-print(patents_list[2].doc_experiment)
 #FIND ALL THE COMPOUND WORD IN ALL FILE#
 nlp = spacy.load("ja_ginza")
 for patent in patents_list:
@@ -35,9 +34,11 @@ for patent in patents_list:
         list_of_compound_word = find_noun_and_compound(doc_samp, i)
         res.extend(list_of_compound_word)        
     res = list(set(res))
+    res = discard_Ascii(res)
+    res = discard_word(res)
     dict_eff_words[patent.name] = res
 
 
 #MAKE AN OUTPUT FILE#
-with open("out.json", 'w') as f:
+with open("out2.json", 'w') as f:
         json.dump(dict_eff_words,f, indent=4, ensure_ascii=False)
