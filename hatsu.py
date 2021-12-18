@@ -17,10 +17,10 @@ for patent in dict_eff_words.keys():
     patents_list.append(new)
 
 
-pattern = "[(.*ように)]"
+pattern = ".*ように|.*により|.*では|.*によれば"
 nlp = spacy.load("ja_ginza")
 
-for patent in patents_list:
+for patent in patents_list: 
     print(patent.name)
     inv_words = patent.doc_invention
 
@@ -28,11 +28,9 @@ for patent in patents_list:
         sentences = inv_word.split("、")
 
         for sentence in sentences:
+            print(regex.findall(pattern, sentence))
             doc = nlp(sentence)
-            for span in doc:
-                print(span.text, span.head, span.)
+            
 
 
-        break
-    break
 

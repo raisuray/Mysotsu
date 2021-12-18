@@ -211,10 +211,15 @@ ig = ['の', 'に', 'は', 'を', 'た', 'が', 'で', 'て', 'と', 'し', 'れ
 'Uu',	
 'Uuo']
 
+def Matcher():
+    import spacy 
+    from spacy.matcher import Matcher
 
-import re
-def get_regex():
-  p = re.compile("[ぁ 法 あ ぃ い ぅ う ぇ え ぉ 々 お か が き ぎ く ぐ け げ こ ご さ ざ し じ す ず せ ぜ そ ぞ た だ ち ぢ っ つ づ て で と ど な に ぬ ね の は ば ぱ ひ び ぴ ふ ぶ ぷ へ べ ぺ ほ ぼ ぽ ま み む め も ゃ や ゅ ゆ ょ よ ら り る れ ろ ゎ わ ゐ ゑ を ん ゔ ゕ ゖ  ゙ ゚ ゛ ゜ ゝ ゞ ゟ ゠ ァ ア ィ イ ゥ ウ ェ エ ォ オ カ ガ キ ギ ク グ ケ ゲ コ ゴ サ ザ シ ジ ス ズ セ ゼ ソ ゾ タ ダ チ ヂ ッ ツ ヅ テ デ ト ド ナ ニ ヌ ネ ノ ハ バ パ ヒ ビ ピ フ ブ プ ヘ ベ ペ ホ ボ ポ マ ミ ム メ モ ャ ヤ ュ ユ ョ ヨ ラ リ ル レ ロ ヮ ワ ヰ ヱ ヲ ン ヴ ヵ ヶ ヷ ヸ ヹ ヺ ・ ー ヽ ヾ ヿ]")
-  return p
-
-#実 装 例 物 側 装
+    nlp = spacy.load("ja_ginza")
+    matcher = Matcher(nlp.vocab)
+    pattern  = [{"TEXT":"発明", "POS":"NOUN"}, {"OP":"*"}, {"LEMMA": "よる"}]
+    pattern2 = [{"TEXT":"以上", "POS":"NOUN"}, {"OP":"*"}, {"LEMMA": "よう"}]
+    matcher.add("con", None, pattern)
+    matcher.add("con", None, pattern2)
+    
+    return matcher

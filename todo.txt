@@ -1,0 +1,1 @@
+nxt using 構文解析 to discard all houhou sentences

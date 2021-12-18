@@ -41,6 +41,18 @@ def discard_word(lis):
 
 
 
+def discard_setsuzoku(lis):
+
+    new_value = []
+    noword_pattern = "(そして)|(また)|(または)|(それに)|(さらに)|(したがって)"
+    for word in lis:
+        total = len(re.findall(noword_pattern, word))
+        
+        if (total <= 0):
+            new_value.append(word)
+
+    return new_value
+
 if __name__ == '__main__':
     dic = {
         "1994096793.txt": [
